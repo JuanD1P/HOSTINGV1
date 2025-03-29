@@ -43,7 +43,7 @@ const GenerarReportUser = () => {
     console.log('Enviando datos:', Object.fromEntries(formDataToSend.entries()));
   
     try {
-      const response = await fetch('http://localhost:3000/reporte', {
+      const response = await fetch('https://hostingv1.onrender.com/reporte', {
         method: 'POST',
         body: formDataToSend,
       });

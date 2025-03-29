@@ -20,5 +20,5 @@ app.use('/auth', userRouter);
 app.use('/reporte', reporteRouter);
 
 app.listen(3000, () => {
-    console.log("🚀 Servidor en funcionamiento en http://localhost:3000");
+    console.log("🚀 Servidor en funcionamiento en Render");
 });

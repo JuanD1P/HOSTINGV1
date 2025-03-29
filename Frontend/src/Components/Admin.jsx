@@ -12,7 +12,7 @@ const Admin = () => {
 
     const obtenerUsuarios = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/auth/usuarios');
+            const response = await axios.get('https://hostingv1.onrender.com/auth/usuarios');
             const usuariosUnicos = response.data.reduce((acc, usuario) => {
                 if (!acc.find(u => u.usuario_id === usuario.usuario_id)) {
                     acc.push(usuario);
@@ -27,7 +27,7 @@ const Admin = () => {
 
     const cambiarRol = async (id, nuevoRol) => {
         try {
-            await axios.put(`http://localhost:3000/auth/usuarios/${id}`, { rol: nuevoRol });
+            await axios.put(`https://hostingv1.onrender.com/auth/usuarios/${id}`, { rol: nuevoRol });
             obtenerUsuarios();
         } catch (error) {
             console.error("Error al cambiar rol:", error);
@@ -38,7 +38,7 @@ const Admin = () => {
         if (!window.confirm("¿Estás seguro de que deseas eliminar este usuario?")) return;
 
         try {
-            await axios.delete(`http://localhost:3000/auth/usuarios/${id}`);
+            await axios.delete(`https://hostingv1.onrender.com/auth/usuarios/${id}`);
             obtenerUsuarios();
         } catch (error) {
             console.error("Error al eliminar usuario:", error);

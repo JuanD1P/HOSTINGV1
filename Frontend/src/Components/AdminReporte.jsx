@@ -12,7 +12,7 @@ const AdminReporte = () => {
 
     const obtenerReportes = async () => {
         try {
-            const response = await axios.get('http://localhost:3000/auth/reportes');
+            const response = await axios.get('https://hostingv1.onrender.com/auth/reportes');
             setReportes(response.data);
         } catch (error) {
             console.error("Error al obtener reportes:", error);
@@ -23,7 +23,7 @@ const AdminReporte = () => {
         if (!window.confirm("¿Estás seguro de que deseas eliminar este reporte?")) return;
 
         try {
-            await axios.delete(`http://localhost:3000/auth/reportes/${id}`);
+            await axios.delete(`https://hostingv1.onrender.com/auth/reportes/${id}`);
             obtenerReportes();
         } catch (error) {
             console.error("Error al eliminar el reporte:", error);

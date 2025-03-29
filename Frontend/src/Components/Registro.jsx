@@ -58,7 +58,7 @@ const Registro = () => {
         };
 
         try {
-            const result = await axios.post('http://localhost:3000/auth/register', dataToSend);
+            const result = await axios.post('https://hostingv1.onrender.com/auth/register', dataToSend);
             if (result.data.registrationStatus) {
                 alert("Registro exitoso");
                 navigate('/userlogin');

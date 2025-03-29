@@ -18,7 +18,7 @@ function InicioAGENC() {
       return;
     }
 
-    axios.get(`http://localhost:3000/auth/usuarios/${usuario_id}`)
+    axios.get(`https://hostingv1.onrender.com/auth/usuarios/${usuario_id}`)
       .then(response => {
         setUsuario(response.data);
       })
@@ -26,7 +26,7 @@ function InicioAGENC() {
         console.error("Error al obtener el usuario:", error);
       });
 
-    axios.get(`http://localhost:3000/auth/mascotas?usuario_id=${usuario_id}`)
+    axios.get(`https://hostingv1.onrender.com/auth/mascotas?usuario_id=${usuario_id}`)
       .then(response => {
         setMascotas(response.data);
       })
@@ -36,7 +36,7 @@ function InicioAGENC() {
   }, [usuario_id]);
 
   const eliminarMascota = (id) => {
-    axios.delete(`http://localhost:3000/auth/mascotas/${id}`)
+    axios.delete(`https://hostingv1.onrender.com/auth/mascotas/${id}`)
       .then(() => {
         setMascotas(mascotas.filter(mascota => mascota.id !== id));
       })
@@ -64,7 +64,7 @@ function InicioAGENC() {
   };
 
   const guardarEdicion = (id) => {
-    axios.put(`http://localhost:3000/auth/mascotas/${id}`, mascotaEditada)
+    axios.put(`https://hostingv1.onrender.com/auth/mascotas/${id}`, mascotaEditada)
       .then(() => {
         setMascotas(mascotas.map(mascota => (mascota.id === id ? mascotaEditada : mascota)));
         setEditando(null);
