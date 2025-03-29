@@ -29,7 +29,8 @@ function App() {
                 <Route path="/" element={<Navigate to="/userlogin" />} />
                 <Route path="/userlogin" element={<Login />} />
                 <Route path="/Registro" element={<Registro />} />
-                <Route path='/Inicio' element ={<Inicio />} />
+                <Route path="/InicioAGENC" element={<InicioAGENC />} />
+
                 
                 {/* RUTAS PARA EL ADMINISTRADOR */}
                 <Route path="/Admin" element={
@@ -45,7 +46,11 @@ function App() {
                 } />
 
                 {/* RUTAS PARA LOS USUARIOS */}   
- 
+                <Route path="/Inicio" element={
+                    <ProtectedRoute allowedRoles={['USER']}>
+                        <Inicio />
+                    </ProtectedRoute>
+                } />
                 <Route path="/AdopMasUser" element={
                     <ProtectedRoute allowedRoles={['USER']}>
                         <AdopMasUser />
@@ -63,11 +68,7 @@ function App() {
                 } />
 
                 {/* RUTA PARA AGENCIAS */}
-                <Route path="/InicioAGENC" element={
-                    <ProtectedRoute allowedRoles={['AGENC']}>
-                        <InicioAGENC />
-                    </ProtectedRoute>
-                } />
+
                 <Route path="/AgenciasPublica" element={
                     <ProtectedRoute allowedRoles={['AGENC']}>
                         <AgenciasPublica />
