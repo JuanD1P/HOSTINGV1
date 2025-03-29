@@ -29,8 +29,7 @@ function App() {
                 <Route path="/" element={<Navigate to="/userlogin" />} />
                 <Route path="/userlogin" element={<Login />} />
                 <Route path="/Registro" element={<Registro />} />
-                <Route path="/InicioAGENC" element={<InicioAGENC />} />
-
+                
                 
                 {/* RUTAS PARA EL ADMINISTRADOR */}
                 <Route path="/Admin" element={
@@ -68,7 +67,11 @@ function App() {
                 } />
 
                 {/* RUTA PARA AGENCIAS */}
-
+                <Route path="/InicioAGENC" element={
+                    <ProtectedRoute allowedRoles={['AGENC']}>
+                        <InicioAGENC />
+                    </ProtectedRoute>
+                } />
                 <Route path="/AgenciasPublica" element={
                     <ProtectedRoute allowedRoles={['AGENC']}>
                         <AgenciasPublica />

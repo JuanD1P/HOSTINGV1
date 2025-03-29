@@ -65,8 +65,6 @@ const Login = () => {
                 } else if (result.data.role === 'AGENC') {
                     navigate('/InicioAGENC');
                 }
-
-                window.location.reload();
             } else {
                 setError(result.data.Error);
             }
