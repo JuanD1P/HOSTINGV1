@@ -5,9 +5,10 @@ import cookieParser from 'cookie-parser';
 import { reporteRouter } from './Routes/reporteR.js';
 
 const app = express();
+
 app.use(cors({
-    origin: ["http://localhost:5173", "https://hostingv-1.vercel.app/"], 
-    methods: ['GET', 'POST', 'PUT' ,'DELETE'],
+    origin: ["http://localhost:5173", "https://hostingv-1.vercel.app"], // Agrega el dominio de Vercel
+    methods: ['GET', 'POST', 'PUT', 'DELETE'],
     credentials: true
 }));
 
@@ -20,5 +21,5 @@ app.use('/auth', userRouter);
 app.use('/reporte', reporteRouter);
 
 app.listen(3000, () => {
-    console.log("🚀 Servidor en funcionamiento en Render");
+    console.log("🚀 Servidor en funcionamiento en http://localhost:3000");
 });
