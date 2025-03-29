@@ -37,7 +37,8 @@ const Login = () => {
             return;
         }
 
-        axios.post('https://hostingv1.onrender.com/auth/userlogin', values)
+        axios.post('https://hostingv1.onrender.com/auth/userlogin', values, {
+            withCredentials: true,})
         .then(result => {
             console.log("✅ Respuesta del backend:", result.data);
 
