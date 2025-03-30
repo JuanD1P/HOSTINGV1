@@ -1,108 +1,196 @@
-/* Admin.css */
-.admin-container {
+/* Importar fuente estilizada */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&display=swap');
+
+/* 🌍 Fondo adaptable */
+.PrincipalPP {
+    background: linear-gradient(to right, #67B6E0, #78C850);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 100vh;
-    padding: 20px;
-    font-family: 'Arial', sans-serif;
-    background: url("../../ImagenesP/ImagenesLogin/Fondo_Login.png"); 
     background-size: cover;
     background-position: center;
-    background-repeat: no-repeat;
-}
-
-.admin-title {
-    font-size: 28px;  /* Tamaño del texto */
-    font-weight: bold; /* Hace el texto más grueso */
-    color: #64f5fa; /* Azul llamativo */
-    text-align: center; /* Centrar el texto */
-    text-transform: uppercase; /* Convierte el texto en mayúsculas */
-    letter-spacing: 2px; /* Espaciado entre letras */
-    margin-bottom: 15px; /* Espacio debajo del título */
-    -webkit-text-stroke: 1.5px black; /* Delineado negro */
-}
-
-
-/* 🚀 TABLA DE USUARIOS */
-.admin-table {
     width: 100%;
-    max-width: 900px;
-    border-collapse: collapse;
-    background: rgba(255, 255, 255, 0.9);
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    overflow: hidden;
 }
 
-.admin-table th,
-.admin-table td {
-    padding: 12px;
+/* 🎯 Contenedor Principal */
+.admin-container {
     text-align: center;
-    border-bottom: 1px solid #ddd;
+    padding: 2%;
+    width: 90%;
+    max-width: 1200px;
+}
+
+/* 🎨 Botón de Reportes */
+.admin-report-btn {
+    background: linear-gradient(to right, #FF9800, #FF5722);
+    border: none;
+    color: white;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.3);
+}
+
+.admin-report-btn:hover {
+    background: linear-gradient(to right, #E68900, #E53935);
+    transform: scale(1.1);
+}
+
+/* 📌 Logo */
+.admin-logo {
+    width: 15%;
+    max-width: 180px;
+    margin-bottom: 20px;
+    animation: fadeIn 1.5s ease-in-out;
+}
+
+/* 🏆 Título */
+.admin-title {
+    font-size: 2.5em;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: #ffcc00;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    margin-bottom: 20px;
+    animation: slideDown 1.2s ease-in-out;
+}
+
+/* 📊 Contenedor de Tablas con Grid */
+.admin-tables-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 2 columnas en PC */
+    gap: 30px;
+    width: 100%;
+    max-width: 1200px;
+    justify-content: center;
+}
+
+/* 📋 Estilo para las Tablas */
+.admin-table {
+    background: rgba(255, 255, 255, 0.15);
+    border-radius: 12px;
+    overflow: hidden;
+    width: 100%; /* Para que ocupe toda la celda del grid */
+    border-collapse: collapse;
+    backdrop-filter: blur(8px);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    animation: fadeInUp 1.5s ease-in-out;
+}
+
+/* 📝 Estilos de Encabezado de Tabla */
+.admin-table thead {
+    background: rgba(255, 255, 255, 0.25);
 }
 
 .admin-table th {
-    background-color: #007bff;
-    color: white;
-    font-weight: bold;
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid rgba(255, 255, 255, 0.3);
 }
 
-.admin-table tr:nth-child(even) {
-    background-color: #f9f9f9;
+/* 📌 Estilos de Celdas */
+.admin-table td {
+    padding: 0.8rem;
+    font-size: 1rem;
+    font-weight: 400;
+    text-align: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
 }
 
-.admin-table tr:hover {
-    background-color: #f1f1f1;
+/* 🌟 Efecto Hover en Filas */
+.admin-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transition: 0.3s ease-in-out;
 }
 
-/* 🚀 SELECTOR DE ROL */
+/* 🔽 Select de Roles */
 .admin-role-select {
-    padding: 8px;
-    font-size: 14px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-    background-color: white;
-    cursor: pointer;
-}
-
-.admin-role-select:focus {
-    border-color: #007bff;
-    outline: none;
-}
-
-/* 🚀 BOTÓN DE ELIMINAR */
-.admin-delete-btn {
-    background-color: #dc3545;
-    color: white;
+    padding: 0.5rem;
     border: none;
-    padding: 8px 12px;
-    border-radius: 4px;
+    border-radius: 5px;
+    background: #ffffff;
+    color: #333;
     cursor: pointer;
-    transition: background-color 0.3s;
-    font-size: 14px;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.admin-role-select:hover {
+    background: #f1f1f1;
+}
+
+/* ❌ Botón de eliminación */
+.admin-delete-btn {
+    background: #ff4d4d;
+    border: none;
+    color: white;
+    padding: 0.6rem 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .admin-delete-btn:hover {
-    background-color: #c82333;
+    background: #e63939;
+    transform: scale(1.1);
 }
 
-/* 🚀 RESPONSIVE */
-@media (max-width: 768px) {
+/* 🎭 Animaciones */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* 🛠️ RESPONSIVE DESIGN */
+@media (max-width: 1024px) {
+    .admin-tables-container {
+        grid-template-columns: 1fr; /* Solo 1 columna en móviles */
+    }
+
     .admin-table {
-        width: 100%;
+        width: 90%;
+        margin: 0 auto;
     }
-
-    .admin-table th,
-    .admin-table td {
-        padding: 10px;
-        font-size: 14px;
-    }
-}
-
-.admin-logo {
-    width: 150px; /* Ajusta el tamaño del logo */
-    display: block;
-    margin: 0 auto 10px; /* Centra el logo arriba del título */
 }
