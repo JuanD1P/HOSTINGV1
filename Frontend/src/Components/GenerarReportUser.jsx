@@ -104,7 +104,7 @@ const GenerarReporteUnico = () => {
             Dirección:
             <input type="text" name="direccion" value={values.direccion} onChange={handleChange} required className="reporte-unico-input"/>
           </label>
-          <button type="submit" onClick={() => navigate('/ReportUser')} className="reporte-unico-boton">Enviar Reporte</button>
+          <button type="submit"  className="reporte-unico-boton">Enviar Reporte</button>
         </form>
         <button onClick={() => navigate('/ReportUser')} className="reporte-unico-boton-volver">Volver</button>
       </div>
