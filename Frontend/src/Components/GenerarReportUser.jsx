@@ -61,7 +61,7 @@ const GenerarReporteUnico = () => {
       const response = await axios.post('https://hostingv1.onrender.com/auth/reporte', values);
       console.log(response.data);
       setSuccessMessage("🎉 ¡Reporte enviado exitosamente! 🎉");
-
+      
 
 
       setValues({
@@ -105,7 +105,7 @@ const GenerarReporteUnico = () => {
             Dirección:
             <input type="text" name="direccion" value={values.direccion} onChange={handleChange} required className="reporte-unico-input"/>
           </label>
-          <button onClick={() => navigate('/ReportUser')} className="reporte-unico-boton">Enviar Reporte</button>
+          <button type="submit" onClick={() => navigate('/ReportUser')} className="reporte-unico-boton">Enviar Reporte</button>
         </form>
         <button onClick={() => navigate('/ReportUser')} className="reporte-unico-boton-volver">Volver</button>
       </div>
