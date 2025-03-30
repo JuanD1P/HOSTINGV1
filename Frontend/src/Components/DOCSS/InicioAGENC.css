@@ -1,5 +1,60 @@
 /* Estilos generales del contenedor */
 
+.info-dueno {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 255, 255, 0.95);
+  padding: 20px;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+  z-index: 1000;
+  width: 300px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+.info-dueno h2 {
+  font-size: 1.5rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.info-dueno p {
+  font-size: 1rem;
+  margin: 5px 0;
+  color: #555;
+}
+
+.info-dueno strong {
+  color: #222;
+}
+
+.inicio-agenc-mascota-boton-Cancelar {
+  background: #d9534f;
+  color: white;
+  border: none;
+  padding: 8px 15px;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+  transition: 0.3s;
+}
+
+.inicio-agenc-mascota-boton-Cancelar:hover {
+  background: #c9302c;
+}
+
+/* Efecto de fondo oscurecido cuando se muestra la info */
+body:has(.info-dueno) {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+
+
+
 .PCOntainersiu{
   font-family: 'Arial', sans-serif;
   background: url("../../ImagenesP/FondoAgenc.jpg");
@@ -273,3 +328,61 @@
   }
 }
 
+
+.modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-contenido {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  width: 300px;
+  text-align: center;
+}
+
+.modal-cerrar {
+  margin-top: 10px;
+  padding: 5px 10px;
+  background: red;
+  color: white;
+  border: none;
+  cursor: pointer;
+}
+
+
+/* Estilos para la información del dueño */
+.info-dueno {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 80%;
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  z-index: 10;
+}
+
+.inicio-agenc-mascota-boton-Cancelar {
+  background: #ff4d4d;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.inicio-agenc-mascota-boton-Cancelar:hover {
+  background: #cc0000;
+}

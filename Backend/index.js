@@ -21,5 +21,5 @@ app.use('/auth', userRouter);
 
 
 app.listen(3000, () => {
-    console.log("🚀 Servidor en funcionamiento en http://localhost:3000");
+    console.log("🚀 Servidor en funcionamiento");
 });

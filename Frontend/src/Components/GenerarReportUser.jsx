@@ -1,102 +1,118 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
+import './DOCSS/RporteJ.css';
+import logo from '../ImagenesP/ImagenesLogin/LOGOPETHOME.png';
 
-const GenerarReportUser = () => {
-  const [formData, setFormData] = useState({
-    foto: null,
+const GenerarReporteUnico = () => {
+  const [values, setValues] = useState({
+    usuario_id: '',
+    foto: '',
     especie: '',
     descripcion: '',
-    direccion: '',
+    direccion: ''
   });
+  const [error, setError] = useState(null);
+  const [successMessage, setSuccessMessage] = useState("");
+  const navigate = useNavigate();
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
+  useEffect(() => {
+    const userId = localStorage.getItem('id');
+    if (userId) {
+      setValues((prev) => ({ ...prev, usuario_id: userId }));
+    } else {
+      setError("⚠️ No se encontró un usuario autenticado.");
+    }
+  }, []);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setValues((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, foto: e.target.files[0] });
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onload = () => {
+      setValues((prev) => ({ ...prev, foto: reader.result }));
+    };
+
+    reader.onerror = (error) => {
+      console.error("Error al leer el archivo:", error);
+      setError("❌ Error al procesar la imagen");
+    };
   };
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    
-    // Obtener el usuario_id dinámicamente (por ejemplo, desde localStorage)
-    const usuario_id = localStorage.getItem('usuario_id'); // O usa sessionStorage si es el caso
-    
-    if (!usuario_id) {
-      alert('Usuario no autenticado');
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setError(null);
+    setSuccessMessage("");
+
+    if (!values.foto.startsWith("data:image")) {
+      setError("⚠️ La imagen no se procesó correctamente.");
       return;
     }
-  
-    if (!formData.foto || !formData.especie || !formData.descripcion || !formData.direccion) {
-      alert('Todos los campos son obligatorios');
-      return;
-    }
-  
-    const formDataToSend = new FormData();
-    formDataToSend.append('usuario_id', usuario_id);  // Aquí ya agregas el usuario_id dinámicamente
-    formDataToSend.append('foto', formData.foto);
-    formDataToSend.append('especie', formData.especie);
-    formDataToSend.append('descripcion', formData.descripcion);
-    formDataToSend.append('direccion', formData.direccion);
-  
-    console.log('Enviando datos:', Object.fromEntries(formDataToSend.entries()));
-  
+
     try {
-      const response = await fetch('https://hostingv1.onrender.com/reporte', {
-        method: 'POST',
-        body: formDataToSend,
-      });
-      console.log('Enviando datos:', Object.fromEntries(formDataToSend.entries()));
+      const response = await axios.post('https://hostingv1.onrender.com/auth/reporte', values);
+      console.log(response.data);
+      setSuccessMessage("🎉 ¡Reporte enviado exitosamente! 🎉");
 
-  
-      const result = await response.json();
-      if (!response.ok) {
-        console.log("Error al enviar el reporte:", result);
-        alert('Error al enviar el reporte: ' + (result.error || 'Desconocido'));
-      }
-      if (response.ok) {
-        alert('Reporte enviado con éxito');
-        setFormData({ foto: null, especie: '', descripcion: '', direccion: '' });
-      } else {
-        alert('Error al enviar el reporte: ' + (result.error || 'Desconocido'));
-      }
+      setTimeout(() => {
+        window.location.reload();
+      }, 1000);
+
+      setValues({
+        usuario_id: localStorage.getItem('usuario_id') || '',
+        foto: '',
+        especie: '',
+        descripcion: '',
+        direccion: ''
+      });
+
+      setTimeout(() => {
+        setSuccessMessage("");
+      }, 3000);
     } catch (error) {
-      console.error('Error al enviar reporte:', error);
-      alert('Hubo un problema al enviar el reporte');
+      console.error("Error al enviar el reporte:", error);
+      setError("❌ Error al enviar el reporte");
     }
   };
 
   return (
-    <div style={{ maxWidth: '500px', margin: '0 auto', padding: '20px', textAlign: 'center' }}>
-      <h1>Generar Reporte</h1>
-      <form onSubmit={handleSubmit}>
-        <label>
-          Foto:
-          <input type="file" accept="image/*" onChange={handleFileChange} required />
-        </label>
-        <br />
-        <label>
-          Especie:
-          <input type="text" name="especie" value={formData.especie} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          Descripción:
-          <textarea name="descripcion" value={formData.descripcion} onChange={handleChange} required />
-        </label>
-        <br />
-        <label>
-          Dirección:
-          <input type="text" name="direccion" value={formData.direccion} onChange={handleChange} required />
-        </label>
-        <br />
-        <button type="submit" style={{ padding: '10px 20px', marginTop: '10px', backgroundColor: '#007bff', color: 'white', border: 'none', borderRadius: '5px', cursor: 'pointer' }}>
-          Enviar Reporte
-        </button>
-      </form>
+    <div className="reporte-unico-container">
+      <img src={logo} alt="Logo" className="logo" />
+      <div className="reporte-unico-card">
+        <h2 className="reporte-unico-titulo">Generar Reporte</h2>
+        {error && <p className="reporte-unico-error">{error}</p>}
+        {successMessage && <p className="reporte-unico-exito">{successMessage}</p>}
+        <form onSubmit={handleSubmit} className="reporte-unico-form">
+          <label className="reporte-unico-label">
+            Foto:
+            <input type="file" accept="image/*" onChange={handleImageChange} required className="reporte-unico-input"/>
+          </label>
+          <label className="reporte-unico-label">
+            Especie:
+            <input type="text" name="especie" value={values.especie} onChange={handleChange} required className="reporte-unico-input"/>
+          </label>
+          <label className="reporte-unico-label">
+            Descripción:
+            <textarea name="descripcion" value={values.descripcion} onChange={handleChange} required className="reporte-unico-textarea"/>
+          </label>
+          <label className="reporte-unico-label">
+            Dirección:
+            <input type="text" name="direccion" value={values.direccion} onChange={handleChange} required className="reporte-unico-input"/>
+          </label>
+          <button type="submit" className="reporte-unico-boton">Enviar Reporte</button>
+        </form>
+        <button onClick={() => navigate('/ReportUser')} className="reporte-unico-boton-volver">Volver</button>
+      </div>
     </div>
   );
 };
 
-export default GenerarReportUser;
+export default GenerarReporteUnico;
